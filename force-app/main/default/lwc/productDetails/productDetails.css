@@ -1,1 +1,44 @@
+/* Styles for the product details section */
+.slds-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
 
+/* Styles for the error message */
+.slds-text-color_error {
+    color: #d50000;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* Custom styles for the header */
+.slds-card__header {
+    border-bottom: 2px solid #dddbda;
+    padding-bottom: 1rem;
+}
+
+/* Custom styles for the product information */
+.slds-form-element__label {
+    font-weight: bold;
+    color: #3e3e3c;
+    margin-top: 1rem;
+}
+
+.slds-form-element__static {
+    background-color: #f3f3f3;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+/* Custom styles for the product description */
+.slds-form-element__static {
+   /* min-height: 100px;*/
+}
+
+/* Custom styles for the spinner */
+.slds-align_absolute-center {
+    margin-top: 2rem;
+}

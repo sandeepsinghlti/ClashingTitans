@@ -1,0 +1,67 @@
+<template>
+    <div class="slds-card slds-p-around_medium">
+        <!-- Header -->
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-bottom_medium">
+            <h1 class="slds-text-heading_medium">Product Details</h1>
+        </div>
+
+        <!-- Product Information -->
+        <template if:true={product}>
+            <div class="slds-grid slds-gutters slds-wrap slds-p-bottom_medium">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-form-element">
+                        <span class="slds-form-element__label">Product Name</span>
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__static">{product.Name}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-form-element">
+                        <span class="slds-form-element__label">Current Stock</span>
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__static">{product.StockCount__c}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-form-element">
+                        <span class="slds-form-element__label">AI Recommended Stock</span>
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__static">{product.CT_Recommended_Stock_count__c}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-form-element">
+                        <span class="slds-form-element__label">Most Selling Month</span>
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__static">{product.Most_Selling_Month__c}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Description -->
+            <div class="slds-form-element slds-p-top_medium">
+                <span class="slds-form-element__label">Description</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{product.Description}</div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-p-top_medium">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error Message -->
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-p-top_medium">{error}</div>
+        </template>
+    </div>
+</template>
