@@ -1,0 +1,40 @@
+<template>
+<lightning-card title="Find Expired Products">
+    <div class="slds-card slds-p-around_medium">
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-4">
+        <lightning-combobox
+            name="interval"
+            label="Day Interval"
+            value={selectedInterval}
+            placeholder="Select Interval"
+            options={intervalOptions}
+            onchange={handleChange}>
+        </lightning-combobox>
+        </div>
+       </div>
+    <template if:true={isLoading}>
+        <div class="slds-align_absolute-center slds-p-top_medium">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+    <!-- Results Table -->
+    <template if:true={hasResults}>
+        <lightning-datatable
+            key-field="Id"
+            data={data}
+            columns={columns}
+            hide-checkbox-column="true"
+            show-row-number-column="true">
+        </lightning-datatable>
+    </template>
+        
+    <template if:true={showNoResults}>
+            <div class="slds-align_absolute-center slds-p-top_medium">
+                <p class="slds-text-body_regular">No products found.</p>
+            </div>
+        </template>
+        </div>
+</lightning-card>
+</template>
