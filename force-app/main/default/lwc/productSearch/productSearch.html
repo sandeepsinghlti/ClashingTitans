@@ -1,0 +1,29 @@
+<template>
+    <!-- Lightning Card to display the Product Search UI -->
+    <lightning-card title="Product Search" icon-name="standard:search">
+        <div class="slds-p-around_medium">
+            <!-- Search Input Field -->
+            <lightning-input
+                type="text"
+                label="Search Products"
+                placeholder="Enter product name..."
+                onchange={handleSearchChange}>
+            </lightning-input>
+        </div>
+        
+        <!-- Display the Product List in a Data Table -->
+        <template if:true={products}>
+            <lightning-datatable
+                key-field="Id"
+                data={products}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+        
+        <!-- Display Error Message -->
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-card>
+</template>
