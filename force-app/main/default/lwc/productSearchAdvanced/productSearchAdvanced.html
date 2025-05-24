@@ -1,0 +1,74 @@
+<template>
+    <div class="slds-card slds-p-around_medium">
+        <!-- Header -->
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-bottom_medium">
+            <h1 class="slds-text-heading_medium">Product Search Advanced</h1>
+        </div>
+
+        <!-- Search Input -->
+        <div class="slds-grid slds-gutters slds-p-bottom_medium">
+            <div class="slds-col slds-size_1-of-1">
+                <lightning-input
+                    type="text"
+                    label="Search Products"
+                    value={searchTerm}
+                    onchange={handleSearchChange}
+                    placeholder="Enter product name..."
+                    class="search-input">
+                </lightning-input>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-p-top_medium">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Results Table -->
+          <template if:false={showProductDetail}>
+        <template if:true={hasResults}>
+            <div class="slds-scrollable_y slds-p-top_medium" style="max-height: 300px;">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="slds-text-title_caps">Name</th>
+                            <th class="slds-text-title_caps">Product Code</th>
+                            <th class="slds-text-title_caps">Family</th>
+                            <th class="slds-text-title_caps">Product Class</th>
+                            <th class="slds-text-title_caps">IsActive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={products} for:item="product">
+                            <tr key={product.Id} data-id={product.Id} onclick={handleRowClick}>
+                                <td>{product.Name}</td>
+                                <td>{product.ProductCode}</td>
+                                <td>{product.Family}</td>
+                                <td>{product.ProductClass}</td>
+                                <td>{product.IsActive}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+        </template>
+
+        <!-- No Results Message -->
+    <template if:false={showProductDetail}>
+        <template if:true={showNoResults}>
+            <div class="slds-align_absolute-center slds-p-top_medium">
+                <p class="slds-text-body_regular">No products found.</p>
+            </div>
+        </template>
+    </template>
+
+
+    </div>
+
+    <template if:true={showProductDetail}>
+        <c-product-details record-id={selectedProductId}></c-product-details>
+    </template>
+</template>
